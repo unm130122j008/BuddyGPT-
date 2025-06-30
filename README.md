@@ -133,7 +133,7 @@ The application will be available at `http://localhost:5173`
 ### Firebase Authentication (Required)
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `VITE_FIREBASE_API_KEY` | Firebase API key | `AIzaSyC...` |
+| `VITE_FIREBASE_API_KEY` | Firebase API key |  |
 | `VITE_FIREBASE_AUTH_DOMAIN` | Firebase auth domain | `your-project.firebaseapp.com` |
 | `VITE_FIREBASE_PROJECT_ID` | Firebase project ID | `your-project-id` |
 | `VITE_FIREBASE_STORAGE_BUCKET` | Firebase storage bucket | `your-project.appspot.com` |
