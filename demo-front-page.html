@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuddyGPT - Your Friendly AI Buddy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translate3d(0,0,0);
+            }
+            40%, 43% {
+                transform: translate3d(0,-30px,0);
+            }
+            70% {
+                transform: translate3d(0,-15px,0);
+            }
+            90% {
+                transform: translate3d(0,-4px,0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .5;
+            }
+        }
+        
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-bounce {
+            animation: bounce 1s infinite;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        .animate-fade-in {
+            animation: fade-in 1s ease-out;
+        }
+        
+        .typing-dots div {
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        
+        .typing-dots div:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dots div:nth-child(2) { animation-delay: -0.16s; }
+        .typing-dots div:nth-child(3) { animation-delay: 0s; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 min-h-screen relative overflow-hidden">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <!-- Floating Bot Icons -->
+        <div class="absolute top-20 left-10 animate-bounce" style="animation-delay: 0s; animation-duration: 3s;">
+            <svg class="w-8 h-8 text-blue-400 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+        </div>
+        <div class="absolute top-40 right-20 animate-bounce" style="animation-delay: 1s; animation-duration: 4s;">
+            <svg class="w-6 h-6 text-purple-400 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+        </div>
+        <div class="absolute bottom-40 left-20 animate-bounce" style="animation-delay: 2s; animation-duration: 3.5s;">
+            <svg class="w-7 h-7 text-pink-400 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+            </svg>
+        </div>
+        <div class="absolute top-60 left-1/3 animate-bounce" style="animation-delay: 0.5s; animation-duration: 4.5s;">
+            <svg class="w-5 h-5 text-cyan-400 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+        </div>
+        <div class="absolute bottom-60 right-1/4 animate-bounce" style="animation-delay: 1.5s; animation-duration: 3.2s;">
+            <svg class="w-6 h-6 text-red-400 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+        </div>
+        
+        <!-- Floating Stars -->
+        <div class="absolute top-10 left-1/4 animate-pulse" style="animation-delay: 0s; animation-duration: 2s;">
+            <svg class="w-3 h-3 text-yellow-400 opacity-20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+        </div>
+        <div class="absolute top-32 right-1/3 animate-pulse" style="animation-delay: 1s; animation-duration: 3s;">
+            <svg class="w-3 h-3 text-yellow-400 opacity-20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+        </div>
+        <div class="absolute bottom-32 left-1/2 animate-pulse" style="animation-delay: 2s; animation-duration: 2.5s;">
+            <svg class="w-3 h-3 text-yellow-400 opacity-20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+        </div>
+        
+        <!-- Gradient Orbs -->
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl animate-pulse" style="animation-duration: 4s;"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-400/10 to-cyan-400/10 rounded-full blur-3xl animate-pulse" style="animation-duration: 5s; animation-delay: 2s;"></div>
+    </div>
+
+    <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
+        <div class="max-w-2xl w-full text-center animate-fade-in">
+            <!-- Hero Section -->
+            <div class="mb-12">
+                <!-- Animated Logo -->
+                <div class="relative mb-8">
+                    <div class="w-24 h-24 bg-gradient-to-br from-purple-500 via-blue-600 to-cyan-500 rounded-xl mx-auto shadow-2xl flex items-center justify-center animate-pulse">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-green-400 rounded-full animate-bounce flex items-center justify-center">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <div class="absolute -bottom-2 -left-2 w-6 h-6 bg-pink-500 rounded-full animate-pulse flex items-center justify-center">
+                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Logo Text -->
+                <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+                    BuddyGPT
+                </h1>
+
+                <!-- Animated Tagline -->
+                <div class="mb-8">
+                    <p class="text-2xl text-gray-600 mb-2">
+                        Your friendly AI buddy, ready to chat with you ✨
+                    </p>
+                    <div class="flex items-center justify-center gap-2 text-sm text-purple-600 font-medium">
+                        <div class="flex items-center gap-1 animate-pulse">
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span>Online</span>
+                        </div>
+                        <span>•</span>
+                        <span>🌍 All Languages</span>
+                        <span>•</span>
+                        <span>🎯 Smart & Fun</span>
+                    </div>
+                </div>
+
+                <!-- Typing Animation -->
+                <div class="mb-8">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-4 max-w-md mx-auto border border-gray-200 shadow-lg">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <div class="text-sm font-medium text-gray-900 mb-1">BuddyGPT</div>
+                                <div class="flex items-center gap-1">
+                                    <span class="text-gray-600 text-sm">Hi! I'm BuddyGPT. What's your name?</span>
+                                    <div class="typing-dots flex space-x-1 ml-2">
+                                        <div class="w-1 h-1 bg-blue-500 rounded-full"></div>
+                                        <div class="w-1 h-1 bg-purple-500 rounded-full"></div>
+                                        <div class="w-1 h-1 bg-pink-500 rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Name Input Form -->
+            <div class="mb-12">
+                <form class="max-w-md mx-auto">
+                    <div class="flex gap-3">
+                        <div class="flex-1">
+                            <input
+                                type="text"
+                                placeholder="Your name"
+                                class="w-full px-6 py-4 text-lg rounded-2xl border-2 border-gray-200 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all duration-200 shadow-lg"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            class="px-6 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white rounded-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500/20 transform hover:scale-105 active:scale-95 shadow-lg flex items-center gap-2"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 00-8.862 12.872M12.75 3.031a9 9 0 016.69 14.036m0 0l-.177-.529A2.25 2.25 0 0017.128 15H16.5l-.324-.324a1.453 1.453 0 00-2.328.377l-.036.073a1.586 1.586 0 01-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 01-5.276 3.67m0 0a9 9 0 01-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25"></path>
+                            </svg>
+                            <span class="font-semibold">Start Chat</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Sample Prompts -->
+            <div class="mb-12">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                    Try asking me:
+                </h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <div class="px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-gray-200 text-gray-700 text-sm hover:bg-white/80 transition-all duration-200 cursor-pointer transform hover:scale-105 shadow-md">
+                        What should I eat today? 🍕
+                    </div>
+                    <div class="px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-gray-200 text-gray-700 text-sm hover:bg-white/80 transition-all duration-200 cursor-pointer transform hover:scale-105 shadow-md">
+                        Give me a joke! 😄
+                    </div>
+                    <div class="px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-gray-200 text-gray-700 text-sm hover:bg-white/80 transition-all duration-200 cursor-pointer transform hover:scale-105 shadow-md">
+                        Help me write a resume 📝
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="mb-12">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div class="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <svg class="w-8 h-8 text-blue-600 mb-3 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                        <h4 class="font-semibold text-gray-900 mb-2">Talk</h4>
+                        <p class="text-sm text-gray-600">Natural conversations in any language</p>
+                    </div>
+                    
+                    <div class="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <svg class="w-8 h-8 text-purple-600 mb-3 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <h4 class="font-semibold text-gray-900 mb-2">Learn</h4>
+                        <p class="text-sm text-gray-600">Get answers and explanations instantly</p>
+                    </div>
+                    
+                    <div class="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <svg class="w-8 h-8 text-pink-600 mb-3 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                        <h4 class="font-semibold text-gray-900 mb-2">Create</h4>
+                        <p class="text-sm text-gray-600">Generate content, ideas, and solutions</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Section -->
+            <div class="mb-8">
+                <div class="bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 shadow-lg">
+                    <h4 class="font-semibold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Powered by Advanced AI
+                    </h4>
+                    <p class="text-sm text-gray-600">
+                        Trained to be your helpful buddy. Smart, friendly, and always ready to assist with anything you need.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="absolute bottom-0 left-0 right-0 p-6 text-center">
+        <div class="text-xs text-gray-500 space-y-1">
+            <p>Made with ❤️ by Bob • © 2025 BuddyGPT</p>
+            <div class="flex justify-center gap-4">
+                <span class="hover:text-purple-600 cursor-pointer transition-colors">Contact</span>
+                <span>•</span>
+                <span class="hover:text-purple-600 cursor-pointer transition-colors">Privacy</span>
+                <span>•</span>
+                <span class="hover:text-purple-600 cursor-pointer transition-colors">Terms</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
